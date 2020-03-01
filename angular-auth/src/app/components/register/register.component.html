@@ -1,0 +1,32 @@
+<div class="p-5">
+  <h2>Register Here</h2>
+  <form #registerForm="ngForm" (ngSubmit)="onSubmitReg()">
+    <div class="form-group">
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+          <input type="text" matInput name="username" [(ngModel)]="register.username">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input type="text" matInput name="email" [(ngModel)]="register.email">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input type="text" matInput name="password" [(ngModel)]="register.password">
+        </mat-form-field>
+      </div>
+      <div class="form-group">
+        <mat-form-field>
+          <mat-label>Role</mat-label>
+          <input type="text" matInput name="role" [(ngModel)]="register.role">
+        </mat-form-field>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Register</button>
+  </form>
+</div>

@@ -35,7 +35,9 @@ router.post('/register',(req,res)=>{
   })
 })
 
-
+router.get('/',(req,res)=>{
+  res.send('nothing')
+})
 
 router.post('/login',(req,res)=>{
   let userData = req.body;
@@ -59,18 +61,17 @@ router.post('/login',(req,res)=>{
 })
 
 
+
 router.get('/dashboard',verifyToken,(req,res,next)=>{
   res.status(200).json(decodedToken)
 })
 
 
-
-
 function verifyToken (req,res,next) {
-  if(!req.header.authorization){
+  if(!req.headers.Authorization){
     return res.status(401).send('unauthorized request')
   }
-  let token = req.headers.authorization.split(' ')[1]
+  let token = req.headers.Authorization.split(' ')[1]
   jwt.verify(token,'mysecretkey',(err,decode)=>{
     if(err){
       return res.status(401).send('unauthorized request')
