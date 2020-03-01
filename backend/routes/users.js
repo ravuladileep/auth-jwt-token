@@ -68,10 +68,10 @@ router.get('/dashboard',verifyToken,(req,res,next)=>{
 
 
 function verifyToken (req,res,next) {
-  if(!req.headers.Authorization){
+  if(!req.headers.authorization){
     return res.status(401).send('unauthorized request')
   }
-  let token = req.headers.Authorization.split(' ')[1]
+  let token = req.headers.authorization.split(' ')[1]
   jwt.verify(token,'mysecretkey',(err,decode)=>{
     if(err){
       return res.status(401).send('unauthorized request')
