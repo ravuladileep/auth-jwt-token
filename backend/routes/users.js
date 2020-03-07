@@ -3,10 +3,9 @@ const router = express.Router()
 const mongoose = require('mongoose')
 const jwt = require('jsonwebtoken')
 const UserModel = require('../models/User.model')
-const db = 'mongodb+srv://dileep:dileep@autheticatejwt-k2eg1.mongodb.net/jwt-auth?retryWrites=true&w=majority'
+const dotenv = require('dotenv').config()
 
-
-mongoose.connect(db,{useNewUrlParser:true,useUnifiedTopology:true},
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true},
                 (err)=>{
                   if(err){
                     console.log(err)
