@@ -15,7 +15,7 @@ app.listen(process.env.PORT,(err)=>{
     console.log('Error occured while listening the port')
     console.log(err)
   }else{
-    console.log('server running on port 3000')
+    console.log('server running on port'+process.env.PORT)
   }
 })
 
