@@ -5,7 +5,9 @@ const jwt = require('jsonwebtoken')
 const UserModel = require('../models/User.model')
 const dotenv = require('dotenv').config()
 
-mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,useUnifiedTopology:true},
+mongoose.connect(process.env.MONGODB_URI,{useNewUrlParser:true,
+                                        useUnifiedTopology:true,
+                                        useFindAndModify:false},
                 (err)=>{
                   if(err){
                     console.log(err)
@@ -81,7 +83,27 @@ function verifyToken (req,res,next) {
   })
 }
 
+router.put('/update/:id', (req,res,next)=>{
+  const id = req.params.id
+    UserModel.findOneAndUpdate(id,{$set:req.body},(err,data)=>{
+    if(err){
+      res.status(500).send(err)
+    }else{
+      res.send('updated successfully');
+    }
+  })
+})
 
+router.delete('/delete/:id', (req,res,next)=>{
+  const id = req.params.id
+    UserModel.findOneAndDelete(id,(err)=>{
+    if(err){
+      res.status(500).send(err)
+    }else{
+      res.send('deleted successfully');
+    }
+  })
+})
 
 
 module.exports = router
